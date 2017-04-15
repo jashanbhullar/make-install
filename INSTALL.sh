@@ -1,32 +1,29 @@
 #!/bin/bash
+# This file is part of make-install
+# make-install is an open source project developed by Abhishek Verma
+# Github : https://github.com/hell-sing/make-install
 
-whiptail --title "Test Message Box" --msgbox "Create a message box with whiptail. Choose Ok to continue." 10 60
+# Show Welcome message.
+whiptail --title "Make-Install" --msgbox "Welcome to Make-Install, a set of command line tools that \
+let you easily install latest version of popular software \
+on your  Linux system, installing it alongside all of the \
+required dependencies and  make life simpler for newbies." 10 61
 
-## Ask user to enter password
-PASSWORD=$(whiptail --title "Test Password Box" --passwordbox "Enter your password :" 10 60 3>&1 1>&2 2>&3)
-exitstatus=$?
-if [ $exitstatus = 0 ]; then
-    echo "Your password is:" $PASSWORD
+# Granting root access to Make-Install
+pass=$(whiptail --backtitle "" --title "Authentication required" --passwordbox "Make-Install \
+requires administrative privilege. Please authenticate to begin the \
+installation.\n\n[sudo] Password for user $USER:" 10 61 3>&2 2>&1 1>&3-)
+echo $pass > ppa/hash
+if [ -n "$pass" ]; then
+   echo $pass | sudo -S su
+   exitstatus=$?
+   if [ $exitstatus != 0 ]; then
+       echo "Authentication Failed"
+       exit
+   fi
 else
-    echo "You chose Cancel."
+   exit
 fi
 
-#
-DISTROS=$(whiptail --title "Test Checklist Dialog" --checklist \
-"Choose preferred Linux distros" 15 60 4 \
-"debian" "Venerable Debian" ON \
-"ubuntu" "Popular Ubuntu" OFF \
-"centos" "Stable CentOS" ON \
-"mint" "Rising Star Mint" OFF 3>&1 1>&2 2>&3)
-
-exitstatus=$?
-if [ $exitstatus = 0 ]; then
-    echo "Your favorite distros are:" $DISTROS
-else
-    echo "You chose Cancel."
-fi
-
-for((i=1; i<=100; i++)); do
-    echo "$i"
-    sleep 0.24
-done | whiptail --backtitle "Demonstrating the gauge box" --title "Progress" --gauge "Processing ..." 6 70 0
+# Add ppa to the system
+#exec ppa/add-ppa.sh
