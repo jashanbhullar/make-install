@@ -13,17 +13,25 @@ required dependencies and  make life simpler for newbies." 10 61
 pass=$(whiptail --backtitle "" --title "Authentication required" --passwordbox "Make-Install \
 requires administrative privilege. Please authenticate to begin the \
 installation.\n\n[sudo] Password for user $USER:" 10 61 3>&2 2>&1 1>&3-)
-echo $pass > ppa/hash
+
 if [ -n "$pass" ]; then
    echo $pass | sudo -S su
    exitstatus=$?
    if [ $exitstatus != 0 ]; then
-       echo "Authentication Failed"
+       echo "~ Authentication Failed"
        exit
+   else
+       echo "~ Authentication Granted [root] $USER"
    fi
 else
    exit
 fi
 
 # Add ppa to the system
-#exec ppa/add-ppa.sh
+exec ppa/add-ppa.sh
+
+# Update system
+sudo apt update
+
+
+#exec ppa/install-ppa.sh
