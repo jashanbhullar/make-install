@@ -9,7 +9,7 @@ wget https://raw.githubusercontent.com/hell-sing/make-install/master/make-instal
 mkdir make-install
 
 # Unzip tar and move to new Directory
-tar -xzf bar.tar.gz -C make-install
+tar -xzf maker-install.tar.gz -C make-install
 
 # Change Directory
 cd make-install/
