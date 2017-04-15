@@ -27,11 +27,5 @@ else
    exit
 fi
 
-# Add ppa to the system
-exec ppa/add-ppa.sh
-
-# Update system
-sudo apt update
-
-
-#exec ppa/install-ppa.sh
+# Add ppa to the system and install
+exec ./download.sh

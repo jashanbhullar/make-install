@@ -14,5 +14,5 @@ tar -xzf make-install.tar.gz -C make-install
 # Change Directory
 cd make-install/
 
-# Execute Makefile
-make
+# Execute INSTALL
+./INSTALL.sh
