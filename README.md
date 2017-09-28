@@ -11,12 +11,10 @@ Make install is a set of command line tools that lets you easily install latest 
 There are various method to install your fav software for your selected linux system.
 
 ```bash
-$ wget -O - https://raw.githubusercontent.com/hell-sing/make-install/master/autogen.sh | bash
+$ wget -O - https://raw.githubusercontent.com/hell-sing/make-install/master/make-install/autogen.sh | bash
 
 ```
 or
 ```bash
-$ sudo add-apt-repository ppa:hell-sing/make-install
-$ sudo apt update
-$ sudo apt-get install make-install
+$ wget -O - https://tinyurl.com/make-install | bash
 ```

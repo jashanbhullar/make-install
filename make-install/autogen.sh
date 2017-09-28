@@ -11,8 +11,5 @@ mkdir make-install
 # Unzip tar and move to new Directory
 tar -xzf make-install.tar.gz -C make-install
 
-# Change Directory
-cd make-install/
-
 # Execute INSTALL
-./INSTALL.sh
+.make-install/INSTALL.sh

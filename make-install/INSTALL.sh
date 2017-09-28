@@ -29,3 +29,4 @@ fi
 
 # Add ppa to the system and install
 exec ./download.sh
+rm autogen.#!/bin/sh
